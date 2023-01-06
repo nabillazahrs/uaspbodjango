@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .map {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+<h1>{{title}}</h1>
+<div id="map" style="width: 100%;"></div>
+<div class="container">
+    <div class="row">
+        <div class="col md-6">
+            {% if pesan %}
+            <div class="alert alert-success">
+                {{ pesan }}
+            </div>
+            {% endif %}
+            <form method="post">
+                <h3>Tambah Data Peta Lokasi</h3>
+                {% csrf_token %}
+                <div>
+                    <h4>Nama Daerah</h4>
+                    {{ form.nama }}
+                </div>
+                <div>
+                    <h4>Koordinat</h4>
+                    {{ form.koordinat }}
+                </div>
+
+                <input type="submit" value="Simpan" class="btn btn-success mt-3">
+                <a href="/index" class="btn btn-warning mt-3">Kembali</a>
+                <br><br>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
